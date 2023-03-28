@@ -1,0 +1,63 @@
+//Main Color
+$primaryColor: #004890;
+$secondaryColor: #e5eeff;
+$brandWhite: #fff;
+
+//Form Color
+$formHeaderBorder: #edf0f5;
+
+//Input colors
+$inputFieldColor: #495057;
+$inputbgColor: #f1f1f1;
+$placeholderColor: #6c757d;
+$inputLabelColor: #000000;
+
+//Validation label colors
+$validationLabelColor: red;
+
+// Answer label colors
+$answerLabelColor: green;
+
+// datatable row colors
+$lightGreenRowColor: #90ee90;
+$lightBlueRowColor: #67b7d1;
+$lightRedRowColor: #ff726f;
+
+//font title
+$titleTextFont: "Poppins", sans-serif;
+
+.imageflex {
+    display: flex;
+    margin-top: 20px;
+    flex-direction: row;
+}
+
+.cardflex {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 0px 4px rgb(212, 209, 209);
+    padding: 1rem;
+}
+
+.imageplaceholder {
+    opacity: 0.4;
+}
+.uploadWrapper {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.Welcome__UMGT {
+    padding: 250px 0px;
+    text-align: center;
+    color: $primaryColor;
+    font-weight: bold;
+    font-size: 50px;
+    text-transform: capitalize;
+}
