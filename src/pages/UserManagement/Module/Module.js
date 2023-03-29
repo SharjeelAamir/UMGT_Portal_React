@@ -22,10 +22,18 @@ function Module() {
         setEditable(true);
     };
 
+    const moduleData = [
+        {
+            moduleDescr: "example 1",
+        },
+        { moduleDescr: "example 2" },
+        { moduleDescr: "example 3" },
+    ];
+
     const getModule = async () => {
         setloading(true);
-        const response = await handleGetRequest("/zmiles_user_management/zumngt/getAllModule");
-        setModule(response?.data);
+        // const response = await handleGetRequest("/zmiles_user_management/zumngt/getAllModule");
+        // setModule(response?.data);
         setloading(false);
     };
 
@@ -37,7 +45,7 @@ function Module() {
         return (
             <div>
                 <Button tooltip="Edit" icon="pi pi-pencil" tooltipOptions={{ position: "top" }} onClick={() => editHandler(rowData)} className="p-button-rounded p-button-warning mr-2" />
-                <Button tooltip="View Details" tooltipOptions={{ position: "top" }} icon="pi pi-eye" onClick={() => history.push(`/getmenu?mid=${rowData?.umgtModuleId}`)} className="p-button-rounded p-button-primary p-mr-2" />
+                <Button tooltip="View Details" tooltipOptions={{ position: "top" }} icon="pi pi-eye" onClick={() => history.push(`/getmenu`)} className="p-button-rounded p-button-primary p-mr-2" />
             </div>
         );
     };
@@ -57,7 +65,7 @@ function Module() {
             </Dialog>
 
             <div className="card p-datatable-sm">
-                <DataTable header="Module" filterDisplay="row" loading={loading} paginator rows={10} value={module} emptyMessage="No data found.">
+                <DataTable header="Module" filterDisplay="row" paginator rows={10} value={moduleData} emptyMessage="No data found.">
                     <Column filter field="moduleDescr" header="Description" />
                     <Column body={actionTemplate} header="Action" />
                 </DataTable>
