@@ -28,6 +28,7 @@ import { useSelector } from "react-redux";
 import Dashboard from "./components/Dashboard";
 import Login from "./pages/login/Login";
 import Module from "./pages/UserManagement/Module/Module";
+import Menu from "./pages/UserManagement/Menu/Menu";
 
 const App = () => {
     const [layoutMode, setLayoutMode] = useState("static");
@@ -195,6 +196,7 @@ const App = () => {
                             <div className="layout-main">
                                 {<Route exact path="/" component={Dashboard} />}
                                 {<Route exact path="/getmodule" component={Module} />}
+                                {<Route exact path="/getmenu" component={Menu} />}
                             </div>
                             {/* <AppFooter layoutColorMode={layoutColorMode} /> */}
                         </div>
