@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { InputTextarea } from "primereact/inputtextarea";
 import { InputText } from "primereact/inputtext";
-import { Dropdown } from 'primereact/dropdown';
+import { Dropdown } from "primereact/dropdown";
 import { useFormik } from "formik";
 import classNames from "classnames";
 import { handlePostRequest } from "../../../services/PostTemplate";
@@ -18,32 +18,43 @@ const AddEditMenu = ({ onHide, editable, menuRowData, getMenu }) => {
 
     const dispatch = useDispatch();
     const appUserId = useSelector((state) => state?.userIdSlice?.userId);
-    useEffect(() => {
-        if (menuRowData !== undefined || menuRowData !== null) {
-            formik.setFieldValue("iconName", menuRowData.iconName);
-        }
-    }, [menuRowData]);
 
     useEffect(() => {
-        if (menuRowData !== undefined || menuRowData !== null) {
-            formik.setFieldValue("iconPath", menuRowData.iconPath);
-        }
+        const rowData = JSON.parse(JSON.stringify(menuRowData));
+        const keys = Object.keys(rowData);
+
+        keys.forEach((item) => {
+            formik.setFieldValue(`${item}`, rowData[item]);
+        });
     }, [menuRowData]);
-    useEffect(() => {
-        if (menuRowData !== undefined || menuRowData !== null) {
-            formik.setFieldValue("menuCode", menuRowData.menuCode);
-        }
-    }, [menuRowData]);
-    useEffect(() => {
-        if (menuRowData !== undefined || menuRowData !== null) {
-            formik.setFieldValue("menuPath", menuRowData.menuPath);
-        }
-    }, [menuRowData]);
-    useEffect(() => {
-        if (menuRowData !== undefined || menuRowData !== null) {
-            formik.setFieldValue("menuDescr", menuRowData.menuDescr);
-        }
-    }, [menuRowData]);
+
+    // useEffect(() => {
+    //     if (menuRowData !== undefined || menuRowData !== null) {
+    //         formik.setFieldValue("iconName", menuRowData.iconName);
+    //     }
+    // }, [menuRowData]);
+
+    // useEffect(() => {
+    //     if (menuRowData !== undefined || menuRowData !== null) {
+    //         formik.setFieldValue("iconPath", menuRowData.iconPath);
+    //     }
+    // }, [menuRowData]);
+    // useEffect(() => {
+    //     if (menuRowData !== undefined || menuRowData !== null) {
+    //         formik.setFieldValue("menuCode", menuRowData.menuCode);
+    //     }
+    // }, [menuRowData]);
+    // useEffect(() => {
+    //     if (menuRowData !== undefined || menuRowData !== null) {
+    //         formik.setFieldValue("menuPath", menuRowData.menuPath);
+    //     }
+    // }, [menuRowData]);
+    // useEffect(() => {
+    //     if (menuRowData !== undefined || menuRowData !== null) {
+    //         formik.setFieldValue("menuDescr", menuRowData.menuDescr);
+    //     }
+    // }, [menuRowData]);
+
     useEffect(() => {
         if (!editable) {
             formik.resetForm();
@@ -93,12 +104,8 @@ const AddEditMenu = ({ onHide, editable, menuRowData, getMenu }) => {
     const [selectedValue, setSelectedValue] = useState(null);
     const onValueChange = (e) => {
         setSelectedValue(e.value);
-    }
-    const values = [
-        { name: 'value 1', },
-        { name: 'value 2', },
-        { name: 'value 3', },
-    ];
+    };
+    const values = [{ name: "value 1" }, { name: "value 2" }, { name: "value 3" }];
     return (
         <>
             <div className="card Card__Round">
@@ -111,14 +118,7 @@ const AddEditMenu = ({ onHide, editable, menuRowData, getMenu }) => {
                             <label htmlFor="iconName" className={classNames({ "p-error": isFormFieldValid("iconName") }, "Label__Text")}>
                                 Icon Name<span className="Label__Required">*</span>
                             </label>
-                            <InputText
-                                placeholder="Add Icon Name"
-                                id="iconName"
-                                name="iconName"
-                                value={formik?.values?.iconName?.replace(/\s\s+/g, " ")}
-                                onChange={formik.handleChange}
-                                className={classNames({ "p-invalid": isFormFieldValid("iconName") }, "TextArea__Round")}
-                            />
+                            <InputText placeholder="Add Icon Name" id="iconName" name="iconName" value={formik?.values?.iconName?.replace(/\s\s+/g, " ")} onChange={formik.handleChange} className={classNames({ "p-invalid": isFormFieldValid("iconName") }, "TextArea__Round")} />
                             {getFormErrorMessage("iconName")}
                         </div>
 
@@ -126,42 +126,21 @@ const AddEditMenu = ({ onHide, editable, menuRowData, getMenu }) => {
                             <label htmlFor="iconPath" className={classNames({ "p-error": isFormFieldValid("iconPath") }, "Label__Text")}>
                                 Icon Path<span className="Label__Required">*</span>
                             </label>
-                            <InputText
-                                placeholder="Add Icon Path"
-                                id="iconPath"
-                                name="iconPath"
-                                value={formik?.values?.iconPath?.replace(/\s\s+/g, " ")}
-                                onChange={formik.handleChange}
-                                className={classNames({ "p-invalid": isFormFieldValid("iconPath") }, "TextArea__Round")}
-                            />
+                            <InputText placeholder="Add Icon Path" id="iconPath" name="iconPath" value={formik?.values?.iconPath?.replace(/\s\s+/g, " ")} onChange={formik.handleChange} className={classNames({ "p-invalid": isFormFieldValid("iconPath") }, "TextArea__Round")} />
                             {getFormErrorMessage("iconPath")}
                         </div>
                         <div className="p-field">
                             <label htmlFor="menuCode" className={classNames({ "p-error": isFormFieldValid("menuCode") }, "Label__Text")}>
                                 Menu Code<span className="Label__Required">*</span>
                             </label>
-                            <InputText
-                                placeholder="Add Menu Code"
-                                id="menuCode"
-                                name="menuCode"
-                                value={formik?.values?.menuCode?.replace(/\s\s+/g, " ")}
-                                onChange={formik.handleChange}
-                                className={classNames({ "p-invalid": isFormFieldValid("menuCode") }, "TextArea__Round")}
-                            />
+                            <InputText placeholder="Add Menu Code" id="menuCode" name="menuCode" value={formik?.values?.menuCode?.replace(/\s\s+/g, " ")} onChange={formik.handleChange} className={classNames({ "p-invalid": isFormFieldValid("menuCode") }, "TextArea__Round")} />
                             {getFormErrorMessage("menuCode")}
                         </div>
                         <div className="p-field">
                             <label htmlFor="menuPath" className={classNames({ "p-error": isFormFieldValid("menuPath") }, "Label__Text")}>
                                 Menu Path<span className="Label__Required">*</span>
                             </label>
-                            <InputText
-                                placeholder="Add Menu Path"
-                                id="menuPath"
-                                name="menuPath"
-                                value={formik?.values?.menuPath?.replace(/\s\s+/g, " ")}
-                                onChange={formik.handleChange}
-                                className={classNames({ "p-invalid": isFormFieldValid("menuPath") }, "TextArea__Round")}
-                            />
+                            <InputText placeholder="Add Menu Path" id="menuPath" name="menuPath" value={formik?.values?.menuPath?.replace(/\s\s+/g, " ")} onChange={formik.handleChange} className={classNames({ "p-invalid": isFormFieldValid("menuPath") }, "TextArea__Round")} />
                             {getFormErrorMessage("menuPath")}
                         </div>
                         <div className="p-field">
@@ -170,7 +149,7 @@ const AddEditMenu = ({ onHide, editable, menuRowData, getMenu }) => {
                             </label>
                             <Dropdown
                                 // className="p-dropdown"
-                                style={{ "lineHeight": 0.2 }}
+                                style={{ lineHeight: 0.2 }}
                                 value={selectedValue}
                                 options={values}
                                 onChange={onValueChange}
@@ -196,7 +175,6 @@ const AddEditMenu = ({ onHide, editable, menuRowData, getMenu }) => {
                             />
                             {getFormErrorMessage("menuDescr")}
                         </div>
-
                     </div>
                     <div className="Down__Btn">
                         <Button disabled={loading} icon={loadingIcon || ""} iconPos="right" label={editable ? "Update" : "Add"} className="Btn__Dark" />

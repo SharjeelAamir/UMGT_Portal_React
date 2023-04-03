@@ -29,6 +29,9 @@ import Dashboard from "./components/Dashboard";
 import Login from "./pages/login/Login";
 import Module from "./pages/UserManagement/Module/Module";
 import Menu from "./pages/UserManagement/Menu/Menu";
+import Roles from "./pages/UserManagement/roles/Roles";
+import RoleRights from "./pages/UserManagement/rolerights/RoleRights";
+import Users from "./pages/UserManagement/users/Users";
 
 const App = () => {
     const [layoutMode, setLayoutMode] = useState("static");
@@ -195,8 +198,11 @@ const App = () => {
                         <div className="layout-main-container">
                             <div className="layout-main">
                                 {<Route exact path="/" component={Dashboard} />}
+                                {<Route exact path="/getroles" component={Roles} />}
                                 {<Route exact path="/getmodule" component={Module} />}
                                 {<Route exact path="/getmenu" component={Menu} />}
+                                {<Route exact path="/getrolerights" component={RoleRights} />}
+                                {<Route exact path="/getallusers" component={Users} />}
                             </div>
                             {/* <AppFooter layoutColorMode={layoutColorMode} /> */}
                         </div>
