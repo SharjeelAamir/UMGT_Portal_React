@@ -57,7 +57,6 @@ const AddEditMenu = ({ onHide, editable, menuRowData, getMenu }) => {
             setloading(true);
             setloadingIcon("pi pi-spin pi-spinner");
             data["userId"] = appUserId;
-            console.log("data: " + JSON.stringify(data));
 
             // if (editable === true) {
             //     data["menuId"] = menuId;
