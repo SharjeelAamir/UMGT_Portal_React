@@ -184,7 +184,7 @@ const App = () => {
     return (
         <div className={wrapperClass} onClick={onWrapperClick}>
             <LoadingOverlay active={isLoading} spinner text="Loading ...">
-                {/* <ToastContainer /> */}
+                <ToastContainer />
                 <Tooltip ref={copyTooltipRef} target=".block-action-copy" position="bottom" content="Copied to clipboard" event="focus" />
 
                 {!localStorage.getItem("email") ? (

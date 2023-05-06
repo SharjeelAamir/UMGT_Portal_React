@@ -1,13 +1,12 @@
 import { baseURL } from "../Config";
 import axios from "axios";
 import { toast } from "react-toastify";
-
 export const login = async (data) => {
     const id = toast.loading("Please wait...");
     try {
         const response = await axios({
             method: "post",
-            url: `${baseURL}jscash/login`,
+            url: `${baseURL}UM/login`,
             data: data,
             headers: {
                 "Content-Type": "application/json",

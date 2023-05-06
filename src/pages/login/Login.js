@@ -16,14 +16,15 @@ const Login = () => {
 
     let history = useHistory();
     const validationSchema = Yup.object().shape({
-        email: Yup.string().required("This field is required.").max(254, "Maximum length is 254 characters"),
-        password: Yup.string().required("This field is required.").max(100, "Maximum length is 100 characters"),
+        userName: Yup.string().required("This field is required.").max(254, "Maximum length is 254 characters"),
+        userPassword: Yup.string().required("This field is required.").max(100, "Maximum length is 100 characters"),
     });
+
     const formik = useFormik({
         validationSchema: validationSchema,
         initialValues: {
-            email: "",
-            password: "",
+            userName: "",
+            userPassword: "",
         },
         validate: (data) => {
             let errors = {};
@@ -34,21 +35,22 @@ const Login = () => {
             // setloading(true);
             console.log("data", data);
             if (data !== null) {
-                localStorage.setItem("email", data.email);
-                localStorage.setItem("password", data.password);
+                localStorage.setItem("userName", data.userName);
+                localStorage.setItem("userPassword", data.userPassword);
             }
-            // const res = await dispatch(loginAction(data, "js-hr-login/login"));
-            // setloading(false);
-            // setloadingIcon("");
-            // if (res?.data.login) {
-            //     history.push("/dashboard");
-            // }
+            const res = await dispatch(loginAction(data, "/login"));
+            setloading(false);
+            setloadingIcon("");
+            if (res?.data.login) {
+                history.push("/dashboard");
+            }
 
-            if (localStorage.getItem("email") === "employee@gmail.com" && localStorage.getItem("password") === "123456") {
-                history.push("/");
-            } else {
-                alert("please enter correct email password");
-            }
+            // if (localStorage.getItem("userName") === "employee@gmail.com" && localStorage.getItem("userPassword") === "123456") {
+            //     history.push("/");
+            // }
+            //  else {
+            //     alert("please enter correct userName userPassword");
+            // }
         },
     });
     const isFormFieldValid = (name) => !!(formik.touched[name] && formik.errors[name]);
@@ -68,10 +70,10 @@ const Login = () => {
                             <h1 className="login_h1">Login</h1>
                         </div>
                         <div className="p-mt-4 credentail_wrapper">
-                            <input id="email" className={classNames({ "p-invalid": isFormFieldValid("email") }, "login_input")} name="email" value={formik.values.email} placeholder="Enter Email Address " onChange={formik.handleChange} type="text" />
-                            {getFormErrorMessage("email")}
-                            <input className={classNames({ "p-invalid": isFormFieldValid("password") }, "login_input")} name="password" placeholder="Enter Password" value={formik.values.password} onChange={formik.handleChange} type="password" />
-                            {getFormErrorMessage("password")}
+                            <input id="userName" className={classNames({ "p-invalid": isFormFieldValid("userName") }, "login_input")} name="userName" value={formik.values.userName} placeholder="Enter Email Address " onChange={formik.handleChange} type="text" />
+                            {getFormErrorMessage("userName")}
+                            <input className={classNames({ "p-invalid": isFormFieldValid("userPassword") }, "login_input")} name="userPassword" placeholder="Enter Password" value={formik.values.userPassword} onChange={formik.handleChange} type="password" />
+                            {getFormErrorMessage("userPassword")}
                             <div className="p-mt-2 button_wrapper">
                                 <Button className="login_button mt-5" label="Login" icon={loadingIcon || ""} iconPos="right" />
                             </div>
